@@ -1,0 +1,780 @@
+<!--script src="static/script/javascript.js"></script-->
+<script src="https://cdn.jsdelivr.net/gh/maxshuty/accessible-web-components@latest/dist/simpleRange.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1><b>Node characteristics</b></h1><br/><br/><br>
+
+<!--meta id="my-data" data-name="{{name}}" data-other="{{other}}"-->
+
+<!--script src="https://code.highcharts.com/highcharts.js"></script-->
+<script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+
+<script type="text/javascript" src="http://code.highcharts.com/stock/highstock.js"></script>
+
+<style>
+  #container {
+    height: 1600px;
+    width: 500px;
+}
+
+</style>
+
+<body style="background-color:white">
+
+<form action="/results_node_characteristics" method="POST" style="align-items:center;" enctype="multipart/form-data">
+  
+  <!-- <div class="wrap-collabsible">
+    <input id="collapsible" class="toggle" type="checkbox" hidden> 
+    <label for="collapsible" class="lbl-toggle">Node characteristics</label>
+    <div class="collapsible-content"> -->
+      <!--div class="content-inner"-->    
+    <h2>Generate bar plots:</h2><br/>
+  <div class="float-container">
+    <div class="float-child1">
+      <div class="container-representativeness-parent"><div id='container-representativeness' class="container-representativeness"></div></div>
+    </div>
+    <!--div class="float-child2">
+      <div class="blue">Float Column 2</div>
+    </div-->
+  </div>
+  <!--br/><br/><br/><br/-->
+  
+
+  <!-- <div>
+    <range-selector
+      id="rangeSelector1"
+      min-label="Minimum"
+      max-label="Maximum"
+      min-range="1"
+      max-range="500"
+      number-of-legend-items-to-show="3"
+      color="blue"
+      inputs-for-labels
+    />
+  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    function scorecompare(idval) {
+   var marksscored = idval;
+
+   var totalmarkstoall = document.getElementById("totalmarkstoall").value;
+   if (parseInt(marksscored.value) > parseInt(totalmarkstoall))
+
+   {
+   marksscored.value = '';
+   } else {
+
+   }
+ }
+
+ function scorecompare_reverse(idval){
+    var totalmarkstoall = idval;
+
+var marksscored = document.getElementById("marksscored").value;
+if (parseInt(totalmarkstoall.value) < parseInt(marksscored))
+
+{
+ totalmarkstoall.value = '';
+} else {
+
+}
+ }
+</script>
+
+<input id="input_left" class='range__slider' max='1.00' min='0.00' oninput='beta.value=input_left.value' type='range' value='0.9' step="0.01" aria-describedby="beta_slider" placeholder="beta" name="beta_slider">
+<input id="beta" oninput='input_left.value=beta.value' required='' type='number' value='0.9' aria-describedby="beta" name="beta" max='1.00' min='0.00' step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+
+<input id="totalmarkstoall" type="number" STYLE="    border: 1px solid #dbdbdb;" placeholder="Enter min value" onkeyup="scorecompare_reverse(this);"></input>
+<input type="number" name="marksscored[]" id="marksscored[0]" value="" onkeyup="scorecompare(this);" placeholder="Enter max value">
+
+  <div class="run-robust-div">
+    <input id='myButton' type="submit" class="run-robust-button" value="Explore more" style="text-align:left">
+  </div>
+
+</form>
+
+<script>
+    var inputLeft = document.getElementById("input-left");
+var inputRight = document.getElementById("input-right");
+
+var thumbLeft = document.querySelector(".slider > .thumb.left");
+var thumbRight = document.querySelector(".slider > .thumb.right");
+var range = document.querySelector(".slider > .range");
+
+function setLeftValue() {
+	var _this = inputLeft,
+		min = parseInt(_this.min),
+		max = parseInt(_this.max);
+
+	_this.value = Math.min(parseInt(_this.value), parseInt(inputRight.value) - 1);
+
+	var percent = ((_this.value - min) / (max - min)) * 100;
+
+	thumbLeft.style.left = percent + "%";
+	range.style.left = percent + "%";
+}
+setLeftValue();
+
+function setRightValue() {
+	var _this = inputRight,
+		min = parseInt(_this.min),
+		max = parseInt(_this.max);
+
+	_this.value = Math.max(parseInt(_this.value), parseInt(inputLeft.value) + 1);
+
+	var percent = ((_this.value - min) / (max - min)) * 100;
+
+	thumbRight.style.right = (100 - percent) + "%";
+	range.style.right = (100 - percent) + "%";
+}
+setRightValue();
+
+inputLeft.addEventListener("input", setLeftValue);
+inputRight.addEventListener("input", setRightValue);
+
+inputLeft.addEventListener("mouseover", function() {
+	thumbLeft.classList.add("hover");
+});
+inputLeft.addEventListener("mouseout", function() {
+	thumbLeft.classList.remove("hover");
+});
+inputLeft.addEventListener("mousedown", function() {
+	thumbLeft.classList.add("active");
+});
+inputLeft.addEventListener("mouseup", function() {
+	thumbLeft.classList.remove("active");
+});
+
+inputRight.addEventListener("mouseover", function() {
+	thumbRight.classList.add("hover");
+});
+inputRight.addEventListener("mouseout", function() {
+	thumbRight.classList.remove("hover");
+});
+inputRight.addEventListener("mousedown", function() {
+	thumbRight.classList.add("active");
+});
+inputRight.addEventListener("mouseup", function() {
+	thumbRight.classList.remove("active");
+});
+</script>
+
+
+<script>
+    function getVals(){
+  // Get slider values
+  var parent = this.parentNode;
+  var slides = parent.getElementsByTagName("input");
+    var slide1 = parseFloat( slides[0].value );
+    var slide2 = parseFloat( slides[1].value );
+  // Neither slider will clip the other, so make sure we determine which is larger
+  if( slide1 > slide2 ){ var tmp = slide2; slide2 = slide1; slide1 = tmp; }
+  
+  var displayElement = parent.getElementsByClassName("rangeValues")[0];
+      displayElement.innerHTML = "$ " + slide1 + "k - $" + slide2 + "k";
+}
+
+window.onload = function(){
+  // Initialize Sliders
+  var sliderSections = document.getElementsByClassName("range-slider");
+      for( var x = 0; x < sliderSections.length; x++ ){
+        var sliders = sliderSections[x].getElementsByTagName("input");
+        for( var y = 0; y < sliders.length; y++ ){
+          if( sliders[y].type ==="range" ){
+            sliders[y].oninput = getVals;
+            // Manually trigger event first time to display values
+            sliders[y].oninput();
+          }
+        }
+      }
+}
+</script>
+
+<style>
+
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child1 {
+    width: 100%;
+    float: center;
+    padding: 20px;
+    border: 2px solid red;
+}
+
+.float-child2 {
+    width: 0%;
+    float: center;
+    padding: 20px;
+    border: 2px solid red;
+}
+
+.container-representativeness-parent {
+    /* margin-left: 100px; */
+}
+
+</style>
+  
+</body>
+
+<style>
+    /*****************************/
+
+.range-slider {
+  height: 5px;
+  position: relative;
+  background-color: #e1e9f6;
+  border-radius: 2px;
+}
+.range-selected {
+  height: 100%;
+  left: 30%;
+  right: 30%;
+  position: absolute;
+  border-radius: 5px;
+  background-color: #1b53c0;
+}
+
+.range-input {
+  position: relative;
+}
+.range-input input {
+  position: absolute;
+  width: 100%;
+  height: 5px;
+  top: -7px;
+  background: none;
+  pointer-events: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.range-input input::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  border: 3px solid #1b53c0;
+  background-color: #fff;
+  pointer-events: auto;
+  -webkit-appearance: none;
+}
+.range-input input::-moz-range-thumb {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 3px solid #1b53c0;
+  background-color: #fff;
+  pointer-events: auto;
+  -moz-appearance: none;
+}
+
+.range-price {
+    margin: 30px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .range-price label {
+    margin-right: 5px;
+  }
+  .range-price input {
+    width: 40px;
+    padding: 5px;
+  }
+  .range-price input:first-of-type {
+    margin-right: 15px;
+  }
+
+</style>
+
+<script>
+    
+</script>
+
+<!-- <script>
+  // var dirDist50 = '#E8544E', //genes
+    // dirDist10 = '#FFD265'; //mesh_terms
+    // dirDistLess10 = '#2AA775';
+
+    // node_data_json={{node_data_json | safe}}
+    edge_list={{edge_list | safe}}
+    node_list={{node_list | safe}}
+    list_of_nodes={{list_of_nodes | safe}}
+
+
+  // <Chart> characteristics:
+  _chart_type_='networkgraph';
+  _marginTop_=100;
+  _margin_=100;
+
+  // <Title> characteristics:
+  _title_text_='Literature miner output network'
+
+Highcharts.chart('container', {
+    
+  //-----------------------
+  chart: {
+        type: _chart_type_,
+        marginTop: _marginTop_,
+        margin: _margin_,
+        animation: false
+    },
+  //-----------------------
+
+    title: {
+        text: _title_text_
+    },
+  //-----------------------
+
+    tooltip: {
+        formatter: function () {
+            var info = '';
+            switch (this.color) {
+            case dirDist50:
+                console.log(dirDist50);
+                info = 'is a node with <b>more than $n$</b> mesh terms/ papers in literature/ ...';
+                break;
+            case dirDist10:
+                console.log(dirDist10);
+                info = 'is a node with <b>more than $n$</b> associated genes/ papers in literature/ ...';
+                break;
+            case dirDistLess10:
+                console.log(dirDistLess10);
+                info = 'is an aiport <b>less than 10</b> direct distinations';
+                break;
+            }
+            return '<b>' + this.key + '</b>: ' + info;
+        }
+    },
+
+    plotOptions: {
+        networkgraph: {
+            keys: ['from', 'to'],
+            layoutAlgorithm: {
+                enableSimulation: true,
+                integration: 'verlet',
+                linkLength: 100
+            }
+        }
+    },
+
+    series: [
+        {
+            marker: {
+                radius: 13
+            },
+            dataLabels: {
+                enabled: true,
+                linkFormat: '',
+                allowOverlap: true,
+                style: {
+                    textOutline: false
+                }
+            },
+            // data: data_,
+            data: edge_list,
+            nodes: node_list
+        }
+    ]
+});
+
+</script> -->
+
+<script>
+  var blah=[['blah', 1], ['goo', 2]]
+  var barchartList_Representativeness={{barchartList_Representativeness | safe}}; 
+  var colors_Representativeness={{colors_Representativeness | safe}};
+
+  var barchartList_Representativeness_data={{barchartList_Representativeness_data | safe}}; 
+  var barchartList_Representativeness_categories={{barchartList_Representativeness_categories | safe}};
+
+  console.log(barchartList_Representativeness);
+  console.log(colors_Representativeness);
+
+  const chart = Highcharts.chart('container-representativeness', {
+    chart: {
+        type: 'bar',
+        zoomBySingleTouch: true,
+        zoomType: 'x', // zoomType: 'y' // zoomType: 'xy'
+        panning: true,
+        panKey: 'shift'
+        // marginLeft: 150
+    },
+
+    plotOptions: {
+                bar: {
+                    dataLabels: {
+                      enabled: true
+                  },
+                    colorByPoint: true,
+                }
+            },
+    
+    colors: colors_Representativeness,
+    
+    title: {
+        text: 'Most popular ideas by April 2016'
+    },
+    exporting: {
+    enabled: true
+  },
+    subtitle: {
+        //text: 'Source: <a href="https://highcharts.uservoice.com/forums/55896-highcharts-javascript-api">UserVoice</a>'
+        text: 'Top 20 terms'
+    },
+    xAxis: {
+        categories: barchartList_Representativeness_categories,
+        // type: 'category',
+        title: {
+            text: null
+        },
+        min: 0,
+        max: 4,
+        scrollbar: {
+            enabled: true
+        },
+        tickLength: 0
+    },
+    yAxis: {
+                min: 0,
+                title: {
+                    // text: 'Representativeness (range: [0, 1])'
+                    text: 'Representativeness ∈ [0, 1]'
+                }
+            },
+    // plotOptions: {
+    //     bar: {
+    //         dataLabels: {
+    //             enabled: true
+    //         }
+    //     }
+    // },
+    legend: {
+        enabled: false
+    },
+    credits: {
+        enabled: false
+    }, 
+    series: [{
+        // colors: ["#ff0000", '#00ff00', '0000ff'],
+        name: 'Wscore',
+        data: barchartList_Representativeness_data
+    }]
+  });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+// var container = document.createElement('div');
+// document.body.appendChild(container);
+
+var charts = {}; // global variable
+
+var renderTo = 'container-1';
+charts[renderTo] = new Highcharts.Chart({
+    chart: {
+          renderTo: renderTo,
+          height: 400
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+
+    series: [{
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    }]
+});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var dirDist50 = "#E8544E",
+  dirDist10 = "#FFD265",
+  dirDistLess10 = "#2AA775";
+
+Highcharts.chart("container", {
+  chart: {
+    type: "networkgraph",
+    marginTop: 80
+  },
+
+  title: {
+    text: "South Korea domestic flight routes"
+  },
+
+  tooltip: {
+    formatter: function () {
+      var info = "";
+      switch (this.color) {
+        case dirDist50:
+          console.log(dirDist50);
+          info = "is an aiport <b>more than 50</b> direct distinations";
+          break;
+        case dirDist10:
+          console.log(dirDist10);
+          info = "is an aiport <b>more than 10</b> direct distinations";
+          break;
+        case dirDistLess10:
+          console.log(dirDistLess10);
+          info = "is an aiport <b>less than 10</b> direct distinations";
+          break;
+      }
+      return "<b>" + this.key + "</b>: " + info;
+    }
+  },
+
+  plotOptions: {
+    networkgraph: {
+      keys: ["from", "to"],
+      layoutAlgorithm: {
+        enableSimulation: true,
+        integration: "verlet",
+        linkLength: 100
+      }
+    }
+  },
+
+  series: [
+    {
+      marker: {
+        radius: 13
+      },
+      dataLabels: {
+        enabled: true,
+        linkFormat: "",
+        allowOverlap: true,
+        style: {
+          textOutline: false
+        }
+      },
+      data: [
+        ["Seoul ICN", "Daegu"],
+        ["Seoul ICN", "Busan"],
+        ["Busan", "Seoul GMP"],
+        ["Busan", "Yangyang"],
+
+        ["Daegu", "Seoul GMP"],
+        ["Daegu", "Jeju"],
+
+        ["Seoul GMP", "Gwangju"],
+        ["Seoul GMP", "Yeosu"],
+        ["Seoul GMP", "Sacheon"],
+        ["Seoul GMP", "Ulsan"],
+        ["Seoul GMP", "Pohang"],
+
+        ["Jeju", "Gwangju"],
+        ["Jeju", "Gunsan"],
+        ["Jeju", "Wonju"],
+        ["Jeju", "Yangyang"],
+        ["Jeju", "Daegu"],
+        ["Jeju", "Yeosu"],
+        ["Jeju", "Sacheon"],
+        ["Jeju", "Ulsan"],
+        ["Jeju", "Busan"],
+        ["Jeju", "Cheongju"]
+      ],
+      nodes: [
+        {
+          id: "Seoul ICN",
+          marker: {
+            radius: 30
+          },
+          color: dirDist50
+        },
+        {
+          id: "Daegu",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Busan",
+          marker: {
+            radius: 30
+          },
+          color: dirDist50
+        },
+        {
+          id: "Seoul GMP",
+          marker: {
+            radius: 20
+          },
+          color: dirDist10
+        },
+        {
+          id: "Jeju",
+          marker: {
+            radius: 30
+          },
+          color: dirDist50
+        },
+        {
+          id: "Gwangju",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Yeosu",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Sacheon",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Ulsan",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Pohang",
+          marker: {
+            radius: 20
+          },
+          color: dirDist10
+        },
+        {
+          id: "Gunsan",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Wonju",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Yangyang",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Cheongju",
+          marker: {
+            radius: 20
+          },
+          color: dirDist10
+        }
+      ]
+    }
+  ]
+});
+
+</script>
+
+
+{% endblock %}

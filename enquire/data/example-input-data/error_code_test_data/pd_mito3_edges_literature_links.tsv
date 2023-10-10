@@ -1,0 +1,51 @@
+PMID	Node1	Node2	pmid	link	QuerySet
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	OPA1	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	PTPN2	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	cell differentiation/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	dopaminergic neurons/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	gtp phosphohydrolases/genetics	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	induced pluripotent stem cells/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	lysosomes/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	membrane potential mitochondrial/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	mutation/genetics	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	necrosis	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	neural stem cells/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	neuroprotective agents/pharmacology	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	oxidative stress/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	parkinson disease/pathology	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	1-methyl-4-phenyl-1236-tetrahydropyridine	small molecule libraries/pharmacology	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+30859901	OPA1	ANXA5	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	ATG7	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	BECN1	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	BNIP3	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	CRTAP	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	CUX1	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	CYCS	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	CYTIP	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	DENR	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	DNM1L	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	GAPDH	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	H2BW2	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	MAP1LC3B	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	MUTYH	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	MYOG	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+29466734	OPA1	PTPN2	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+30859901	OPA1	RACGAP1	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	SLC25A4	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	SOD1	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	SQSTM1	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	UTRN	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+30859901	OPA1	VDAC1	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+29466734	OPA1	cell differentiation/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	OPA1	dopaminergic neurons/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	OPA1	gtp phosphohydrolases/genetics	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+31875567	OPA1	gtp phosphohydrolases/genetics	31875567	https://pubmed.ncbi.nlm.nih.gov/31875567	pmid-parkinsond_stem_mitoch-set.txt
+29466734	OPA1	lysosomes/drug effects	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+29466734	OPA1	mutation/genetics	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+31875567	OPA1	mutation/genetics	31875567	https://pubmed.ncbi.nlm.nih.gov/31875567	pmid-parkinsond_stem_mitoch-set.txt
+29466734	OPA1	necrosis	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt
+31875567	OPA1	neostriatum/metabolism	31875567	https://pubmed.ncbi.nlm.nih.gov/31875567	pmid-parkinsond_stem_mitoch-set.txt
+31875567	OPA1	nerve net/metabolism	31875567	https://pubmed.ncbi.nlm.nih.gov/31875567	pmid-parkinsond_stem_mitoch-set.txt
+31875567	OPA1	neurites/metabolism	31875567	https://pubmed.ncbi.nlm.nih.gov/31875567	pmid-parkinsond_stem_mitoch-set.txt
+30859901	OPA1	neuromuscular junction/genetics	30859901	https://pubmed.ncbi.nlm.nih.gov/30859901	"('BCL2', 'CASP8', 'CASP9', 'PTEN')"
+29466734	OPA1	small molecule libraries/pharmacology	29466734	https://pubmed.ncbi.nlm.nih.gov/29466734	pmid-parkinsond_stem_mitoch-set.txt

@@ -1,0 +1,594 @@
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+
+<!------------------------------================ HighgraphJS script: ================----------------------------------------->
+<div id='container-1'></div>
+<!---------------------Script for Representativeness:-------------------->
+<script>
+
+</script>
+
+<!---------------------------------------------------------------------------------------------------------------------------->
+<script>
+
+</script>
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--First, at the top of the page we need to implement this functionality (only for run_robust):-->
+<!--Page reload as soon as user navigates to 'run_robust' page using the back navigation (either BUTTON or CHROME BACK select).-->
+<!--Becuse we do not want to see the previous settings on the new page, but the default settings instead.-->
+
+<script>
+// // Old code (uncomment if the other one does not work perfectly):
+//   window.addEventListener( "pageshow", function ( event ) {
+//   var historyTraversal = event.persisted || 
+//                          ( typeof window.performance != "undefined" && 
+//                               window.performance.navigation.type === 2 );
+//   if ( historyTraversal ) {
+//     // Handle page restore.
+//     window.location.reload();
+//   }
+// });
+
+// // New code (this works well):
+var perfEntries = performance.getEntriesByType("navigation");
+if (perfEntries[0].type === "back_forward") {
+    location.reload(true);
+}
+</script>
+
+
+<body style="background-color:white">
+  
+  <br/><br/>
+  <div class="mobile_message">
+    <h1 style="text-align: center;">Oops, your screen is too small!</h1><br/>
+    <div class="w3-panel w3-pale-red w3-border" style="text-align: center;">
+        <h4>ENQUIRE-Web only runs on screens bigger than 768px in width.</h4>
+    </div><br/>
+  </div>
+  
+
+  {% if error %}
+    <script>
+      alert("{{error}}");
+    </script>
+  {% endif %}
+
+  
+  <!-- <label>
+    <input name="inputfile_seeds" id="inputfile_seeds"  type="file" style="display:none; width: 0px;"/>
+    <i class="upload-button"><span>Upload node data</span></i>
+    <textarea id="textbox_seeds" name="textbox_seeds" style="width:300px;height:150px;"></textarea>
+  </label><br><br> -->
+  <div class="card-title" style="width:80%; margin-top:0; text-align:center; margin:auto; background-color:white;">
+
+    <!--------------------------------------------------------------------------- Form: ------------------------------------------------------------------>
+    <form action="/results_viz_temp" method="POST" style="align-items:center;" enctype="multipart/form-data">    <!-- input form begins -->
+
+      <h2>Set parameters</h2><br/><br/><br>
+
+      <style>
+        div.demo {
+        display:table;
+        width:100%;
+        }
+        
+        div.demo span {
+        display:table-cell;
+        text-align:center;
+        }
+      </style>
+      
+
+      <br><br><br>
+
+
+
+<!----#############-->
+<!------------------->
+<!-- <input id="confirm" type="checkbox" /><label for="confirm">Label content</label> -->
+<!------------------->
+<!--details>
+  <summary>Click here for optional parameters</summary-->
+    <div class="wrap-collabsible">
+      <input id="collapsible" class="toggle" type="checkbox" hidden> 
+      <label for="collapsible" class="lbl-toggle">Optional parameters</label>
+      <div class="collapsible-content">
+        <div class="content-inner">       
+          
+
+            <!------------------------------------------------------------------------------------------------------------------------>
+           
+<br/><br/><br/>
+
+            <div><i>
+
+                      <div class="horizontal div_optional_parameters" id="elements1">
+                        <br/><br/><br/><br/><br/><br/><br/><br/><br/>
+
+                                <div class="field-wrapper">
+                                  <div class="horizontal">
+                                        
+                                              <div class="vertical">
+                                                              <!-- <div>
+                                                                <label class="dropdown-div" for="normalize">Parameter-1</label>
+                                                              </div>
+                                                              <div class="param-class">
+                                                                <div>
+                                                                  <select class="optional-params-dropdown-style" id="selectOne_param1" aria-describedby="param1" placeholder="parameter-1" name="param1">
+                                                                    <option value="0" selected>Option-1</option>
+                                                                    <option value="1">Option-2</option>
+                                                                    <option value="2">Option-3</option>
+                                                                    <option value="3">Option-4</option>
+                                                                  </select>
+                                                                </div>
+                                                                <div class="help-dropdown-input study-bias-popover">
+                                                                  <div class="help-dropdown" data-toggle="popover" data-placement="top" data-content="Select positive real numbers as bias aware edge costs for the deprioritization of hub nodes. Bait usage scores are used by default.">&#63;</div>
+                                                                </div>
+                                                              </div> -->
+                                                              <!-------------------------------->
+                                                              <div id='container'></div>
+                                                              <!-------------------------------->
+                                              </div>
+                                        
+                                              
+                                        </div>
+                                  </div>
+                                  <br/><br/><br/><br/><br/><br/>
+                                </div>  
+
+
+                                
+                               
+
+
+            </i></div>
+
+
+            <div class="vertical div_optional_parameters">
+
+                    <div class="horizontal">
+                      <div class="param_div ">
+                        <br/><br/>
+                            <div>
+                              <label>Parameter-2</label><br>
+                              <!-- <input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider">
+                              <input id="alpha" oninput='alpha_slider.value=alpha.value' required='' type='number' class="alpha" value='0.25' aria-describedby="alpha" name="alpha" max='1.00' min='0.00' step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                              <label alt='alpha = ?' placeholder='alpha'></label> -->
+
+                              <br/>
+                            </div>
+                            <div class="help-number-input">
+                              <div class="help-button" data-toggle="popover" data-placement="top" data-content="alpha is a measure of allowed diversion from the cheapest Steiner tree. Setting alpha = 0 only returns the best Steiner tree.">&#63;</div>
+                            </div>
+                      </div>
+
+                      <div class="param_div">
+                            <div>
+                              <label>Parameter-3</label><br>
+                              <input class='range__slider' id='beta_slider' max='1.00' min='0.00' oninput='beta.value=beta_slider.value' type='range' value='0.9' step="0.01" aria-describedby="beta_slider" placeholder="beta" name="beta_slider">
+                              <input id="beta" oninput='beta_slider.value=beta.value' required='' type='number' value='0.9' aria-describedby="beta" name="beta" max='1.00' min='0.00' step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                              <label alt='beta = ?' placeholder='beta'></label>
+                              <br/>
+                            </div>
+                            <div class="help-number-input beta-popover">
+                              <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                            </div>
+                      </div>
+                      <div class="param_div">
+                            <div>
+                              <label>Parameter-4</label><br>
+                              <input id="gamma" required='' type='number' value='30' aria-describedby="gamma" name="gamma" pattern="^\d*(\.\d{0,2})?$"/>
+                              <label alt='gamma = ?' placeholder='gamma'></label>
+                              <br/>
+                            </div>
+                            <div class="help-number-input n-popover">
+                              <div class="help-button" data-toggle="popover" data-placement="top" data-content="The desired number of trees controls the extent to which the disease module computed by ROBUST covers the space of all near-optimal generalized Steiner trees. Setting n to a rather large value is hence desirable but detrimental for the runtime.">&#63;</div>
+                            </div>
+                      </div>
+                    </div>
+                    
+                    <div class="horizontal">
+                      <div class="param_div">
+                            <div>
+                              <label>Parameter-5</label><br>
+                              <input class='range__slider' id='delta_slider' max='1.00' min='0.00' oninput='tau.value=tau_slider.value' type='range' value='0.1' step="0.01" aria-describedby="delta_slider" placeholder="delta" name="delta_slider">
+                              <input id="delta" oninput='tau_slider.value=tau.value' required='' type='number' value='0.1' aria-describedby="delta" name="delta" max='1.00' min='0.00' step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                              <label alt='delta = ?' placeholder='delta'></label>
+                              <br/>
+                            </div>
+                            <div class="help-number-input tau-popover">
+                              <div class="help-button" data-toggle="popover" data-placement="top" data-content="tau provides a tradeoff between robustness and explorativeness. The larger the value of tau, the more robust but less explorative the disease module computed by ROBUST.">&#63;</div>
+                            </div>
+                      </div>
+
+                      <div class="param_div">
+                            <div>
+                              <label>Parameter-6</label><br>
+                              <input class='range__slider' id='tau_slider' max='1.00' min='0.00' oninput='gamma.value=gamma_slider.value' type='range' value='1.0' step="0.01" aria-describedby="tau_slider" placeholder="tau" name="tau_slider">
+                              <input id="tau" oninput='gamma_slider.value=gamma.value' required='' type='number' value='1.00' aria-describedby="tau" name="tau" max='1.00' min='0.00' step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                              <label alt='tau = ?' placeholder='tau'></label>
+                              <br/>
+                            </div>
+                            <div class="help-number-input gamma-popover">
+                              <div class="help-button" data-toggle="popover" data-placement="top" data-content="gamma is a hyper-parameter that regulates to what degree bias aware edge costs are utilized. If set to gamma = 1, we fully leverage the information contained in the study bias data, while setting gamma = 0 renders the bias aware edge costs equivalent to the uniform costs used in the original version of ROBUST.">&#63;</div>
+                            </div>
+                      </div>
+
+                    </div>
+            </div>
+</div></div><hr></div>
+
+<br/>
+
+
+
+
+<style>
+.border_{
+      border:1px solid;
+      height:250px;
+      position:relative;
+  }
+  
+  .border_ > h1{
+      position:absolute;
+      top:-34px;
+      /*left:50%;*/
+      /*left:500px;*/
+      background:#fff;
+      /*padding:0 0px;*/
+      left:46%
+  }
+</style>
+
+
+<!------------------------------------->
+
+
+<br/><br/>
+<div class="run-robust-div">
+  <input id='myButton' type="submit" class="run-robust-button" value="See results">
+</div>
+
+</form>
+
+
+<!-------------------------- script_run_robust.js: --------------------------------->
+
+<script type="text/javascript">
+
+
+
+/* Hide 'Custom PPI network upload' hidden div on loading of page: */
+$("#div_upload_custom_ppi_network").hide();
+$(document).ready(function(){
+    $('input[type="radio"]').click(function(){
+        var inputValue = $(this).attr("value");
+        var targetBox = $("." + inputValue);
+        $(".box").not(targetBox).hide();
+        $(targetBox).show();
+    });
+});
+    
+/* Upload or fill in seeds: */
+document.getElementById('inputfile_nodes')
+.addEventListener('change', function() {
+var fr=new FileReader();
+fr.onload=function(){
+    document.getElementById('textbox_nodes')
+            .textContent=fr.result;
+}  
+fr.readAsText(this.files[0]);
+alert("Node data uploaded succesfully!");
+})
+
+document.getElementById('inputfile_edges')
+.addEventListener('change', function() {
+var fr=new FileReader();
+fr.onload=function(){
+    document.getElementById('textbox_edges')
+            .textContent=fr.result;
+}  
+fr.readAsText(this.files[0]);
+alert("Edge data uploaded succesfully!");
+})
+
+document.getElementById('inputfile_lit')
+.addEventListener('change', function() {
+var fr=new FileReader();
+fr.onload=function(){
+    document.getElementById('textbox_lit')
+            .textContent=fr.result;
+}  
+fr.readAsText(this.files[0]);
+alert("Edge literature data uploaded succesfully!");
+})
+
+
+
+/* Show either inbuilt PPI network options or hidden div containing 'Upload Custom network' button and textbox, based on radio button click: */
+
+
+/* Uploading custom PPI network: */
+document.getElementById('uploaded_ppi_network_filename')
+                      .addEventListener('change', function() {
+                        
+                      var fr=new FileReader();
+                      fr.onload=function(){
+                          document.getElementById('network_contents')
+                                  .textContent=fr.result;
+                      }
+                        
+                      fr.readAsText(this.files[0]);
+                  })
+
+/* Upload custom study bias data: */
+document.getElementById('inputfile_studybiasdata')
+                        .addEventListener('change', function() { 
+                        var fr=new FileReader();
+                        fr.onload=function(){
+                            document.getElementById('custom_studybiasdata_contents_textbox')
+                                    .textContent=fr.result;
+                        } 
+                        fr.readAsText(this.files[0]);
+                    })
+
+
+
+function resetValues(){
+            document.getElementById("alpha").value=0.25;
+            document.getElementById("alpha_slider").value=0.25;
+            document.getElementById("beta").value=0.9;
+            document.getElementById("beta_slider").value=0.9;
+            document.getElementById("n").value=30;
+            document.getElementById("tau").value=0.1;
+            document.getElementById("tau_slider").value=0.1;
+            document.getElementById("gamma").value=1.00;
+            document.getElementById("gamma_slider").value=1.00;
+            document.getElementById("textbox_seeds").value = 'TLR4 NLRP3 MBL2 IL6 IL1RN IL1B CX3CR1 CCR5 AGT ACE F2'; // COVID-19 case study
+}
+
+function resetValues_pp(){
+            document.getElementById("alpha").value=0.25;
+            document.getElementById("alpha_slider").value=0.25;
+            document.getElementById("beta").value=0.9;
+            document.getElementById("beta_slider").value=0.9;
+            document.getElementById("n").value=30;
+            document.getElementById("tau").value=0.1;
+            document.getElementById("tau_slider").value=0.1;
+            document.getElementById("gamma").value=1.00;
+            document.getElementById("gamma_slider").value=1.00;
+            document.getElementById("textbox_seeds").value = 'P63092 P35354 P01229 P01148 Q5JWF2 P84996 O95467 P05019'; // PP case study
+}
+
+
+
+$(document).on('keydown', 'input[pattern]', function(e){
+  var input = $(this);
+  var oldVal = input.val();
+  var regex = new RegExp(input.attr('pattern'), 'g');
+  setTimeout(function(){
+    var newVal = input.val();
+    if(!regex.test(newVal)){
+      input.val(oldVal); 
+    }
+  }, 1);
+});
+
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+
+
+
+function myFunction() {
+  var dots = document.getElementById("dots");
+  var moreText = document.getElementById("more");
+  var btnText = document.getElementById("myBtn");
+
+  if (dots.style.display === "none") {
+    dots.style.display = "inline";
+    btnText.innerHTML = "Read more"; 
+    moreText.style.display = "none";
+  } else {
+    dots.style.display = "none";
+    btnText.innerHTML = "Read less"; 
+    moreText.style.display = "inline";
+  }
+}
+
+
+
+
+
+$("#alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#alpha_slider").val("0");
+    }
+});
+//trigger blur once for the initial setting:
+$("#alpha").trigger("blur");
+
+$("#beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#beta_slider").val("0");
+    }
+});
+//trigger blur once for the initial setting:
+$("#beta").trigger("blur");
+
+$("#tau").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#tau_slider").val("0");
+    }
+});
+//trigger blur once for the initial setting:
+$("#tau").trigger("blur");
+
+$("#gamma").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#gamma_slider").val("0");
+    }
+});
+//trigger blur once for the initial setting:
+$("#gamma").trigger("blur");
+
+
+$('[data-toggle="popover"]').popover();
+
+</script>
+
+<!----------------------------------------------------------->
+
+</div>
+
+</div>
+
+<input type='text' id='myValue' hidden/>
+<!-- <button id='myButton'>Enqueue</button> -->
+
+<p id='result'></p>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    
+const button = document.getElementById('myButton')
+const value = document.getElementById('myValue')
+const progressbar = document.getElementById('myProgress')
+
+function update_bar(value) {
+  progressbar.setAttribute("aria-valuenow", value);
+  progressbar.style.width = value + '%';
+
+  // progress bar should have label
+  progressbar.innerHTML = value + '%';
+}
+
+button.addEventListener('click', function(e) {
+
+  // Reset progress bar incase of re-click.
+  update_bar(0);
+
+
+  fetch(`${window.origin}/enqueue`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      value: value.value
+    }),
+  }).then((r) => {
+    r.json().then((data) => {
+
+      // The job.id returned from the server once enqueued:
+      job_id = data['job_id'];
+
+      const source = new EventSource("/progress/" + job_id);
+      
+      source.onmessage = function(event) {
+        const data = JSON.parse(event.data);
+        console.log(data);
+
+        update_bar(data['value']);
+
+        if (data['status'] == 'finished') {
+
+          // Manually set progress to 100 when job is finished, as
+          // actual progress value may be less from last read.
+
+          update_bar(100);
+
+          source.close();
+
+          // Just write the result which is included in the last streamed item
+          // to the page
+          document.getElementById('result').textContent = data['result'];
+        }
+      }
+
+    })
+  });
+
+});
+
+
+
+
+
+
+
+
+
+
+
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    } 
+  });
+}
+</script>
+
+
+</div>
+
+<!--a href="https://drive.google.com/file/d/1a0StI9mRpXuOgQnfYMXZtPBY0oCbfsDa/view?usp=sharing" download="example-input-data.zip" target="_blank">Download COVID-19 data</a>
+<a href="https://drive.google.com/file/d/1gnxg5vgMUCC-3kUTw46y-Lg0SHgIjbA4/view?usp=sharing" download="example-input-data.zip" target="_blank">Download PP data</a-->
+
+<style>
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+
+  border-radius: 40px;
+  background-color: #00008B;
+  border: none;
+  color: #FFFFFF;
+  font-style:normal;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-size:15px;
+  width: 250px;
+  font-weight: normal;
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 90px;
+  right: 205px;
+}
+</style>
+
+</body>
+{% endblock %}

@@ -1,0 +1,31 @@
+version: '3.3'
+
+services:
+  backend:
+    image: robust-web
+    container_name: robust_web
+    build: .
+    restart: always
+    env_file:
+      - 'celery.env'
+    command:
+      - "sh"
+      - "flask.sh"
+    volumes:
+#      - ../robust_bias_aware:/usr/src/robust-web/robust_bias_aware
+      - robust-db-volume:/usr/src/robust-web/db
+    ports:
+      - 8061:5000
+    depends_on:
+      - redis
+
+  redis:
+    image: redis
+    restart: always
+    command: [ "redis-server" ]
+    container_name: robust_redis
+    hostname: robust_redis
+volumes:
+  robust-db-volume:
+#    ports:
+#      - 6379:6379

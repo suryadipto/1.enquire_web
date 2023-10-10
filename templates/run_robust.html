@@ -1,0 +1,1333 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--First, at the top of the page we need to implement this functionality (only for run_robust):-->
+<!--Page reload as soon as user navigates to 'run_robust' page using the back navigation (either BUTTON or CHROME BACK select).-->
+<!--Becuse we do not want to see the previous settings on the new page, but the default settings instead.-->
+
+<script src="static/script/javascript_run_robust.js"></script>
+
+<body style="background-color:white">
+  <br/><br/>
+  <div class="mobile_message">
+    <h1 style="text-align: center;">Oops, your screen is too small!</h1><br/>
+    <div class="w3-panel w3-pale-red w3-border" style="text-align: center;">
+        <h4>ROBUST-Web only runs on screens bigger than 768px in width.</h4>
+    </div><br/>
+  </div>
+  
+
+  {% if error %}
+    <script>
+      alert("{{error}}");
+    </script>
+  {% endif %}
+  
+  
+  <div class="card-title" style="width:80%; margin-top:0; text-align:center; margin:auto; background-color:white;">
+
+    <!--------------------------------------------------------------------------- Form: ------------------------------------------------------------------>
+    <form action="/results" method="POST" style="align-items:center;">    <!-- input form begins -->
+
+      <h2>Input files and settings</h2><br/><br/><br>
+
+<div class="div_optional_parameters_first-div"></div>  
+
+<!----#############-->
+<!------------------->
+<!-- <input id="confirm" type="checkbox" /><label for="confirm">Label content</label> -->
+<!------------------->
+<!--details>
+  <summary>Click here for optional parameters</summary-->
+    <div class="wrap-collabsible">
+      <input id="collapsible" class="toggle" type="checkbox"> 
+      <label for="collapsible" class="lbl-toggle">Node parameters</label>
+      <div class="collapsible-content">
+        <div class="content-inner">
+            <!------------------------------------------------------------------------------------------------------------------------>
+            <div class="vertical div_optional_parameters">
+                    <!-------------------------------------------------------------->
+                    <!-------------------------------------------------------------->
+                    <br/>
+                    <div class="horizontal">
+                      <!-------------------------------------------------------------->
+                      <!-------------------------------------------------------------->
+                      <div class="param_div">
+                        <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                          <label>Wscore</label>
+                          <span class="full-range"></span>
+                          <span class="incl-range"></span>
+                          <input class="inputs range-input" id='Wscore_rangeOne' oninput='Wscore_alpha.value=Wscore_rangeOne.value' name="Wscore_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                          <input class="inputs range-input" id='Wscore_rangeTwo' oninput='Wscore_beta.value=Wscore_rangeTwo.value' name="Wscore_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                          <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                          <div class="horizontal">
+                            <!---------------->
+                            <div class="inner-div-min-value">
+                              <input class="number-input" id="Wscore_alpha" oninput='Wscore_rangeOne.value=Wscore_alpha.value' required='' type='number' aria-describedby="Wscore_alpha" name="Wscore_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                            </div>
+                            <!---------------->
+                            <!-- <div style="position:relative; top: 100;">
+                              -
+                            </div> -->
+                            <!--------------->
+                            <div class="inner-div-max-value dash">
+                              <input class="number-input" id="Wscore_beta" oninput='Wscore_rangeTwo.value=Wscore_beta.value' required='' type='number' aria-describedby="Wscore_beta" name="Wscore_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                            </div>
+                            <!---------------->
+                          </div>
+                          <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                          <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                        </div>
+                        <!---------------------------------------------->
+                        <div class="help-number-input beta-popover">
+                          <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                        </div>
+                        <!---------------------------------------------->
+                      </div>
+                      <!-------------------------------------------------------------->
+                      <!-------------------------------------------------------------->
+
+                      <!----================================================================----->
+
+                      <!-------------------------------------------------------------->
+                      <!-------------------------------------------------------------->
+                      <div class="param_div">
+                        <div class="vertical">
+                          <div>
+                            <label class="dropdown-div" for="normalize">Category</label>
+                          </div>
+                          <div class="param-class">
+                            <div>
+                              <select class="optional-params-dropdown-style" id="selectOne_Category" aria-describedby="category" placeholder="category" name="category">
+                                <option value="0" selected>Both</option>
+                                <option value="1">Mesh terms</option>
+                                <option value="2">Genes</option>
+                              </select>
+                            </div>
+                            <div class="help-dropdown-input category-popover">
+                              <div class="help-dropdown" data-toggle="popover" data-placement="top" data-content="Select category of data to be selected for visualization. Both categories are chosen by default.">&#63;</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-------------------------------------------------------------->
+                      <!-------------------------------------------------------------->
+                    </div>
+                    <!-------------------------------------------------------------->
+                    <!-------------------------------------------------------------->  
+            </div>
+            <!------------------------------------------------------------------------------------------------------------------------>
+          </div></div></div>
+
+
+          <!----------*******************************************************---------->
+          <!----------*******************************************************---------->
+          <!----------*******************************************************---------->
+
+
+          <div class="wrap-collabsible">
+            <input id="collapsible_edge_params" class="toggle" type="checkbox"> 
+            <label for="collapsible_edge_params" class="lbl-toggle">Edge parameters</label>
+            <div class="collapsible-content">
+              <div class="content-inner">
+                  <!------------------------------------------------------------------------------------------------------------------------>
+                  <div class="vertical div_optional_parameters">
+                          <!-------------------------------------------------------------->
+                          <!-------------------------------------------------------------->
+                          <br/><br/><br/><br/><br/><br/>
+                          <div class="horizontal">
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                            <div class="param_div">
+                              <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                                <label>P_value</label>
+                                <span class="full-range"></span>
+                                <span class="incl-range"></span>
+                                <input class="inputs range-input" id='P_value_rangeOne' oninput='P_value_alpha.value=P_value_rangeOne.value' name="P_value_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                                <input class="inputs range-input" id='P_value_rangeTwo' oninput='P_value_beta.value=P_value_rangeTwo.value' name="P_value_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <div class="horizontal">
+                                  <!---------------->
+                                  <div class="inner-div-min-value">
+                                    <input class="number-input" id="P_value_alpha" oninput='P_value_rangeOne.value=P_value_alpha.value' required='' type='number' aria-describedby="P_value_alpha" name="P_value_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                  <!-- <div style="position:relative; top: 100;">
+                                    -
+                                  </div> -->
+                                  <!--------------->
+                                  <div class="inner-div-max-value dash">
+                                    <input class="number-input" id="P_value_beta" oninput='P_value_rangeTwo.value=P_value_beta.value' required='' type='number' aria-describedby="P_value_beta" name="P_value_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                </div>
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                              </div>
+                              <!---------------------------------------------->
+                              <div class="help-number-input beta-popover">
+                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                              </div>
+                              <!---------------------------------------------->
+                            </div>
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+      
+                            <!----================================================================----->
+      
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                            <div class="param_div">
+                              <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                                <label>Adj_p_value</label>
+                                <span class="full-range"></span>
+                                <span class="incl-range"></span>
+                                <input class="inputs range-input" id='Adj_p_value_rangeOne' oninput='Adj_p_value_alpha.value=Adj_p_value_rangeOne.value' name="Adj_p_value_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                                <input class="inputs range-input" id='Adj_p_value_rangeTwo' oninput='Adj_p_value_beta.value=Adj_p_value_rangeTwo.value' name="Adj_p_value_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <div class="horizontal">
+                                  <!---------------->
+                                  <div class="inner-div-min-value">
+                                    <input class="number-input" id="Adj_p_value_alpha" oninput='Adj_p_value_rangeOne.value=Adj_p_value_alpha.value' required='' type='number' aria-describedby="Adj_p_value_alpha" name="Adj_p_value_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                  <!-- <div style="position:relative; top: 100;">
+                                    -
+                                  </div> -->
+                                  <!--------------->
+                                  <div class="inner-div-max-value dash">
+                                    <input class="number-input" id="Adj_p_value_beta" oninput='Adj_p_value_rangeTwo.value=Adj_p_value_beta.value' required='' type='number' aria-describedby="Adj_p_value_beta" name="Adj_p_value_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                </div>
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                              </div>
+                              <!---------------------------------------------->
+                              <div class="help-number-input beta-popover">
+                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                              </div>
+                              <!---------------------------------------------->
+                            </div>
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+      
+                            <!----================================================================----->
+      
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                            <div class="param_div">
+                              <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                                <label>Fisher_p_value</label>
+                                <span class="full-range"></span>
+                                <span class="incl-range"></span>
+                                <input class="inputs range-input" id='Fisher_p_value_rangeOne' oninput='Fisher_p_value_alpha.value=Fisher_p_value_rangeOne.value' name="Fisher_p_value_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                                <input class="inputs range-input" id='Fisher_p_value_rangeTwo' oninput='Fisher_p_value_beta.value=Fisher_p_value_rangeTwo.value' name="Fisher_p_value_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <div class="horizontal">
+                                  <!---------------->
+                                  <div class="inner-div-min-value">
+                                    <input class="number-input" id="Fisher_p_value_alpha" oninput='Fisher_p_value_rangeOne.value=Fisher_p_value_alpha.value' required='' type='number' aria-describedby="Fisher_p_value_alpha" name="Fisher_p_value_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                  <!-- <div style="position:relative; top: 100;">
+                                    -
+                                  </div> -->
+                                  <!--------------->
+                                  <div class="inner-div-max-value dash">
+                                    <input class="number-input" id="Fisher_p_value_beta" oninput='Fisher_p_value_rangeTwo.value=Fisher_p_value_beta.value' required='' type='number' aria-describedby="Fisher_p_value_beta" name="Fisher_p_value_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                </div>
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                              </div>
+                              <!---------------------------------------------->
+                              <div class="help-number-input beta-popover">
+                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                              </div>
+                              <!---------------------------------------------->
+                            </div>
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                          </div>
+                          <!-------------------------------------------------------------->
+                          <!-------------------------------------------------------------->
+                          
+                          
+                          <!-------------------------------------------------------------->
+                          <!-------------------------------------------------------------->
+                          <br/><br/><br/><br/><br/><br/>
+                          <div class="horizontal">
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                            <div class="param_div">
+                              <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                                <label>zt_pois_cdf</label>
+                                <span class="full-range"></span>
+                                <span class="incl-range"></span>
+                                <input class="inputs range-input" id='zt_pois_cdf_rangeOne' oninput='zt_pois_cdf_alpha.value=zt_pois_cdf_rangeOne.value' name="zt_pois_cdf_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                                <input class="inputs range-input" id='zt_pois_cdf_rangeTwo' oninput='zt_pois_cdf_beta.value=zt_pois_cdf_rangeTwo.value' name="zt_pois_cdf_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <div class="horizontal">
+                                  <!---------------->
+                                  <div class="inner-div-min-value">
+                                    <input class="number-input" id="zt_pois_cdf_alpha" oninput='zt_pois_cdf_rangeOne.value=zt_pois_cdf_alpha.value' required='' type='number' aria-describedby="zt_pois_cdf_alpha" name="zt_pois_cdf_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                  <!-- <div style="position:relative; top: 100;">
+                                    -
+                                  </div> -->
+                                  <!--------------->
+                                  <div class="inner-div-max-value dash">
+                                    <input class="number-input" id="zt_pois_cdf_beta" oninput='zt_pois_cdf_rangeTwo.value=zt_pois_cdf_beta.value' required='' type='number' aria-describedby="zt_pois_cdf_beta" name="zt_pois_cdf_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                </div>
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                              </div>
+                              <!---------------------------------------------->
+                              <div class="help-number-input beta-popover">
+                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                              </div>
+                              <!---------------------------------------------->
+                            </div>
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+      
+                            <!----================================================================----->
+      
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                            <div class="param_div">
+                              <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                                <label>Raw_co_occurrence</label>
+                                <span class="full-range"></span>
+                                <span class="incl-range"></span>
+                                <input class="inputs range-input" id='Raw_co_occurrence_rangeOne' oninput='Raw_co_occurrence_alpha.value=Raw_co_occurrence_rangeOne.value' name="Raw_co_occurrence_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                                <input class="inputs range-input" id='Raw_co_occurrence_rangeTwo' oninput='Raw_co_occurrence_beta.value=Raw_co_occurrence_rangeTwo.value' name="Raw_co_occurrence_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <div class="horizontal">
+                                  <!---------------->
+                                  <div class="inner-div-min-value">
+                                    <input class="number-input" id="Raw_co_occurrence_alpha" oninput='Raw_co_occurrence_rangeOne.value=Raw_co_occurrence_alpha.value' required='' type='number' aria-describedby="Raw_co_occurrence_alpha" name="Raw_co_occurrence_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                  <!-- <div style="position:relative; top: 100;">
+                                    -
+                                  </div> -->
+                                  <!--------------->
+                                  <div class="inner-div-max-value dash">
+                                    <input class="number-input" id="Raw_co_occurrence_beta" oninput='Raw_co_occurrence_rangeTwo.value=Raw_co_occurrence_beta.value' required='' type='number' aria-describedby="Raw_co_occurrence_beta" name="Raw_co_occurrence_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                </div>
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                              </div>
+                              <!---------------------------------------------->
+                              <div class="help-number-input beta-popover">
+                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                              </div>
+                              <!---------------------------------------------->
+                            </div>
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+      
+                            <!----================================================================----->
+      
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                            <div class="param_div">
+                              <div style="position:relative; top: -63px;" class="range-slider container double_range_slider_div">
+                                <label>Expansion</label>
+                                <span class="full-range"></span>
+                                <span class="incl-range"></span>
+                                <input class="inputs range-input" id='Expansion_rangeOne' oninput='Expansion_alpha.value=Expansion_rangeOne.value' name="Expansion_rangeOne" value="0" min="0" max="1" step="0.01" type="range">
+                                <input class="inputs range-input" id='Expansion_rangeTwo' oninput='Expansion_beta.value=Expansion_rangeTwo.value' name="Expansion_rangeTwo" value="1" min="0" max="1" step="0.01" type="range">
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <div class="horizontal">
+                                  <!---------------->
+                                  <div class="inner-div-min-value">
+                                    <input class="number-input" id="Expansion_alpha" oninput='Expansion_rangeOne.value=Expansion_alpha.value' required='' type='number' aria-describedby="Expansion_alpha" name="Expansion_alpha"  value="0" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                  <!-- <div style="position:relative; top: 100;">
+                                    -
+                                  </div> -->
+                                  <!--------------->
+                                  <div class="inner-div-max-value dash">
+                                    <input class="number-input" id="Expansion_beta" oninput='Expansion_rangeTwo.value=Expansion_beta.value' required='' type='number' aria-describedby="Expansion_beta" name="Expansion_beta"  value="1" min="0" max="1" step="0.01" pattern="^\d*(\.\d{0,2})?$"/>
+                                  </div>
+                                  <!---------------->
+                                </div>
+                                <!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+                                <!--input class='range__slider' id='alpha_slider' max='1.00' min='0.00' oninput='alpha.value=alpha_slider.value' type='range' value='0.25' step="0.01" aria-describedby="alpha_slider" placeholder="alpha" name="alpha_slider"-->
+                              </div>
+                              <!---------------------------------------------->
+                              <div class="help-number-input beta-popover">
+                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                              </div>
+                              <!---------------------------------------------->
+                            </div>
+                            <!-------------------------------------------------------------->
+                            <!-------------------------------------------------------------->
+                          </div>
+                          <!-------------------------------------------------------------->
+                          <!-------------------------------------------------------------->
+                  </div>
+                  <!------------------------------------------------------------------------------------------------------------------------>
+                </div></div></div>
+      
+      
+                <!----------*******************************************************---------->
+                <!----------*******************************************************---------->
+                <!----------*******************************************************---------->
+
+
+          					
+
+
+
+
+
+<style>
+.border_{
+      border:1px solid;
+      height:250px;
+      position:relative;
+  }
+  
+  .border_ > h1{
+      position:absolute;
+      top:-34px;
+      /*left:50%;*/
+      /*left:500px;*/
+      background:#fff;
+      /*padding:0 0px;*/
+      left:46%
+  }
+</style>
+
+
+<!------------------------------------->
+
+
+<br/><br/>
+<div class="run-robust-div">
+  <input id='myButton' type="submit" class="run-robust-button" value="Run ROBUST">
+</div>
+
+</form>
+
+
+
+
+</div>
+
+</div>
+
+
+<input type='text' id='myValue' hidden/>
+<!-- <button id='myButton'>Enqueue</button> -->
+
+<p id='result'></p>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    
+
+</script>
+
+
+</div>
+
+<!--a href="https://drive.google.com/file/d/1a0StI9mRpXuOgQnfYMXZtPBY0oCbfsDa/view?usp=sharing" download="example-input-data.zip" target="_blank">Download COVID-19 data</a>
+<a href="https://drive.google.com/file/d/1gnxg5vgMUCC-3kUTw46y-Lg0SHgIjbA4/view?usp=sharing" download="example-input-data.zip" target="_blank">Download PP data</a-->
+
+<style>
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+
+    text-decoration: none;
+    color: initial;
+
+  border-radius: 40px;
+  background-color: #00008B;
+  border: none;
+  color: #FFFFFF;
+  font-style:normal;
+  text-align: center;
+  font-size: 28px;
+  padding: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+  font-size:15px;
+  width: 250px;
+  font-weight: normal;
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 90px;
+  right: 205px;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// 1. Wscore:
+
+$("#Wscore_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#Wscore_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#Wscore_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#Wscore_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Wscore_beta").val());
+        $("#Wscore_rangeOne").val($("#Wscore_beta").val());
+
+        $("#Wscore_beta").val(temp);
+        $("#Wscore_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Wscore_alpha").trigger("blur");
+// -------------------------------------
+  $("#Wscore_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#Wscore_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#Wscore_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#Wscore_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Wscore_alpha").val());
+        $("#Wscore_rangeTwo").val($("#Wscore_alpha").val());
+
+        $("#Wscore_alpha").val(temp);
+        $("#Wscore_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Wscore_beta").trigger("blur");
+
+
+
+
+// 2. P_value:
+
+$("#P_value_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#P_value_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#P_value_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#P_value_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#P_value_beta").val());
+        $("#P_value_rangeOne").val($("#P_value_beta").val());
+
+        $("#P_value_beta").val(temp);
+        $("#P_value_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#P_value_alpha").trigger("blur");
+// -------------------------------------
+  $("#P_value_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#P_value_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#P_value_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#P_value_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#P_value_alpha").val());
+        $("#P_value_rangeTwo").val($("#P_value_alpha").val());
+
+        $("#P_value_alpha").val(temp);
+        $("#P_value_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#P_value_beta").trigger("blur");
+
+  // 3. Adj_p_value:
+
+  $("#Adj_p_value_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#Adj_p_value_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#Adj_p_value_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#Adj_p_value_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Adj_p_value_beta").val());
+        $("#Adj_p_value_rangeOne").val($("#Adj_p_value_beta").val());
+
+        $("#Adj_p_value_beta").val(temp);
+        $("#Adj_p_value_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Adj_p_value_alpha").trigger("blur");
+// -------------------------------------
+  $("#Adj_p_value_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#Adj_p_value_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#Adj_p_value_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#Adj_p_value_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Adj_p_value_alpha").val());
+        $("#Adj_p_value_rangeTwo").val($("#Adj_p_value_alpha").val());
+
+        $("#Adj_p_value_alpha").val(temp);
+        $("#Adj_p_value_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Adj_p_value_beta").trigger("blur");
+
+  // 4. Fisher_p_value:
+
+  $("#Fisher_p_value_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#Fisher_p_value_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#Fisher_p_value_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#Fisher_p_value_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Fisher_p_value_beta").val());
+        $("#Fisher_p_value_rangeOne").val($("#Fisher_p_value_beta").val());
+
+        $("#Fisher_p_value_beta").val(temp);
+        $("#Fisher_p_value_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Fisher_p_value_alpha").trigger("blur");
+// -------------------------------------
+  $("#Fisher_p_value_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#Fisher_p_value_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#Fisher_p_value_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#Fisher_p_value_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Fisher_p_value_alpha").val());
+        $("#Fisher_p_value_rangeTwo").val($("#Fisher_p_value_alpha").val());
+
+        $("#Fisher_p_value_alpha").val(temp);
+        $("#Fisher_p_value_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Fisher_p_value_beta").trigger("blur");
+
+  // 5. zt_pois_cdf:
+
+  $("#zt_pois_cdf_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#zt_pois_cdf_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#zt_pois_cdf_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#zt_pois_cdf_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#zt_pois_cdf_beta").val());
+        $("#zt_pois_cdf_rangeOne").val($("#zt_pois_cdf_beta").val());
+
+        $("#zt_pois_cdf_beta").val(temp);
+        $("#zt_pois_cdf_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#zt_pois_cdf_alpha").trigger("blur");
+// -------------------------------------
+  $("#zt_pois_cdf_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#zt_pois_cdf_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#zt_pois_cdf_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#zt_pois_cdf_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#zt_pois_cdf_alpha").val());
+        $("#zt_pois_cdf_rangeTwo").val($("#zt_pois_cdf_alpha").val());
+
+        $("#zt_pois_cdf_alpha").val(temp);
+        $("#zt_pois_cdf_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#zt_pois_cdf_beta").trigger("blur");
+
+  // 6. Raw_co_occurrence:
+
+  $("#Raw_co_occurrence_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#Raw_co_occurrence_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#Raw_co_occurrence_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#Raw_co_occurrence_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Raw_co_occurrence_beta").val());
+        $("#Raw_co_occurrence_rangeOne").val($("#Raw_co_occurrence_beta").val());
+
+        $("#Raw_co_occurrence_beta").val(temp);
+        $("#Raw_co_occurrence_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Raw_co_occurrence_alpha").trigger("blur");
+// -------------------------------------
+  $("#Raw_co_occurrence_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#Raw_co_occurrence_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#Raw_co_occurrence_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#Raw_co_occurrence_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Raw_co_occurrence_alpha").val());
+        $("#Raw_co_occurrence_rangeTwo").val($("#Raw_co_occurrence_alpha").val());
+
+        $("#Raw_co_occurrence_alpha").val(temp);
+        $("#Raw_co_occurrence_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Raw_co_occurrence_beta").trigger("blur");
+
+  // 7. Expansion:
+
+  $("#Expansion_alpha").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("0");
+        $("#Expansion_rangeOne").val("0");
+    }
+
+    if ($(this).val() < 0 || $(this).val() > 1) {
+        $(this).val("0");
+        $("#Expansion_rangeOne").val("0");
+    }
+
+    if ($(this).val() > $("#Expansion_beta").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Expansion_beta").val());
+        $("#Expansion_rangeOne").val($("#Expansion_beta").val());
+
+        $("#Expansion_beta").val(temp);
+        $("#Expansion_rangeTwo").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Expansion_alpha").trigger("blur");
+// -------------------------------------
+  $("#Expansion_beta").on("blur", function () {
+    if ($(this).val().trim().length == 0) {
+        $(this).val("1");
+        $("#Expansion_rangeTwo").val("1");
+    }
+
+    if ($(this).val() > 1 || $(this).val() < 0) {
+        $(this).val("1");
+        $("#Expansion_rangeTwo").val("1");
+    }
+
+    if ($(this).val() < $("#Expansion_alpha").val()) {
+
+        var temp = $(this).val();
+
+        $(this).val($("#Expansion_alpha").val());
+        $("#Expansion_rangeTwo").val($("#Expansion_alpha").val());
+
+        $("#Expansion_alpha").val(temp);
+        $("#Expansion_rangeOne").val(temp);
+    }
+  });
+  //trigger blur once for the initial setting:
+  $("#Expansion_beta").trigger("blur");
+
+  </script>
+
+<style>
+  .dash:after {
+  display: block;
+  text-align: center;
+  font-size: 1.3em;
+  position: absolute;
+  color: black;
+  content: "—";
+  top: 10px;
+  right: 87px;
+ 
+}
+
+.inner-div-min-value{
+  position: relative;
+  top: 10px;
+  right: 25px;
+}
+
+.inner-div-min-value .number-input{
+  font-size: 12px;
+}
+
+.inner-div-max-value{
+  position: relative;
+  top: 10px;
+  left: 25px;
+}
+
+.inner-div-max-value .number-input{
+  font-size: 12px;
+}
+</style>
+
+<style>
+/* https://css-tricks.com/styling-cross-browser-compatible-range-inputs-css/ */
+
+.range-slider {
+    /* position: relative; */
+    width: 200px;
+    height: 35px;
+    text-align: center;
+}
+
+.range-slider .inputs {
+    /* pointer-events: none; */
+    position: absolute;
+    overflow: hidden;
+    left: 0;
+    top: 15px;
+    width: 200px;
+    outline: none;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+}
+
+.range-slider .inputs::-webkit-slider-thumb {
+    pointer-events: all;
+    /* position: relative; */
+    z-index: 1;
+    outline: 0;
+}
+
+.range-slider .inputs::-moz-range-thumb {
+    pointer-events: all;
+    /* position: relative; */
+    z-index: 10;
+    -moz-appearance: none;
+    width: 9px;
+}
+
+.range-slider .inputs::-moz-range-track {
+    /* position: relative; */
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 1);
+    border: 0;
+}
+
+.range-slider .inputs:last-of-type::-moz-range-track {
+    -moz-appearance: none;
+    background: none transparent;
+    border: 0;
+}
+
+.range-slider .range-input::-moz-focus-outer {
+  border: 0;
+}
+
+.rangeValue {
+	width: 30px;
+}
+
+.output {
+  position: absolute;
+  border:1px solid #999;
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  color: #999;
+  border-radius: 4px;
+  display: inline-block;
+  font: bold 15px/30px Helvetica, Arial;
+  bottom: 75%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.output.outputTwo {
+	left: 100%;
+}
+
+.container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.range-input {
+  -webkit-appearance: none;
+  background: none;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  height: 5px;
+  border: none;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.range-input::-ms-track {
+  height: 5px;
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+}
+
+.range-input::-moz-range-track {
+  height: 5px;
+  background: transparent;
+  border: none;
+  border-radius: 3px;
+}
+
+.range-input::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #555;
+  margin-top: -5px;
+  /* position: relative; */
+  z-index: 10000;
+}
+
+.range-input::-ms-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #555;
+  margin-top: -5px;
+  /* position: relative; */
+  z-index: 10000;
+}
+
+.range-input::-moz-range-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background: #555;
+  margin-top: -5px;
+  /* position: relative; */
+  z-index: 10000;
+}
+
+.range-input:focus {
+  outline: none;
+}
+
+.full-range,
+.incl-range {
+	width: 100%;
+	height: 5px;
+	left: 0;
+	top: 21px;
+	position: absolute;
+  background: #00bafa;
+	/* background: #DDD; */
+  /* background: gold; */
+}
+
+.incl-range {
+	/* background: gold; */
+  background: #00bafa;
+}
+
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="presentation">
+  <h1>Floating Button - Google Inbox</h1>
+  <h3>Only CSS</h3>
+</div>
+
+<div id="container-floating">
+  <div class="nd3 nds">
+    <input type="button" class="nds" formtarget="_blank" value="Explore node statistics"></input>
+  </div>
+  
+  <div class="nd2 nds">
+    <input type="button" class="nds" formtarget="_blank" value="Explore edge statistics"></input>
+  </div>
+  
+  <div class="nd1 nds">
+    <input type="button" class="nds" formtarget="_blank" value="Explore edge literature"></input>
+  </div>
+
+  <div id="floating-button">
+    <p class="plus">+</p>
+    <img class="edit" src="https://ssl.gstatic.com/bt/C3341AA7A1A076756462EE2E5CD71C11/1x/bt_compose2_1x.png">
+  </div>
+</div>
+
+
+<style>
+/* body{
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
+  background: #f1f1f1;
+} */
+
+
+
+
+#floating-button{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background: #0069ff;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  cursor: pointer;
+  /* box-shadow: 0px 2px 10px rgba(0,0,0,0.2); */
+}
+
+.plus{
+  color: white;
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  padding: 0;
+  margin: 0;
+  line-height: 55px;
+  font-size: 38px;
+  font-family: 'Roboto';
+  font-weight: 300;
+  animation: plus-out 0.3s;
+  transition: all 0.3s;
+}
+
+#container-floating{
+  position: fixed;
+  width: 70px;
+  height: 70px;
+  bottom: 30px;
+  right: 30px;
+  z-index: 50px;
+}
+
+#container-floating:hover{
+  height: 400px;
+  width: 90px;
+  padding: 30px;
+}
+
+#container-floating:hover .plus{
+  animation: plus-in 0.15s linear;
+  animation-fill-mode: forwards;
+}
+
+.edit{
+  position: absolute;
+  top: 0;
+  display: block;
+  bottom: 0;
+  left: 0;
+  display: block;
+  right: 0;
+  padding: 0;
+  opacity: 0;
+  margin: auto;
+  line-height: 65px;
+  transform: rotateZ(-70deg);
+  transition: all 0.3s;
+  animation: edit-out 0.3s;
+}
+
+#container-floating:hover .edit{
+  animation: edit-in 0.2s;
+   animation-delay: 0.1s;
+  animation-fill-mode: forwards;
+}
+
+
+
+.nds{
+  width: 200px;
+  height: 40px;
+  right: 0px;
+  background-color: #00bafa;
+  border-radius: 40px;
+  border: none;
+  position: fixed;
+  z-index: 300;
+  transform:  scale(0);
+  cursor: pointer;
+}
+
+.nd1{
+  background: #00bafa;
+  right: 40px;
+  bottom: 120px;
+  /* animation-delay: 0.2s;
+    animation: bounce-out-nds 0.3s linear;
+  animation-fill-mode:  forwards; */
+}
+
+.nd2{
+  background: #00bafa;
+  right: 40px;
+  bottom: 180px;
+  /* animation-delay: 0.15s;
+    animation: bounce-out-nds 0.15s linear;
+  animation-fill-mode:  forwards; */
+}
+
+.nd3{
+  background: #00bafa;
+  right: 40px;
+  bottom: 240px;
+  /* animation-delay: 0.1s;
+    animation: bounce-out-nds 0.1s linear;
+  animation-fill-mode:  forwards; */
+}
+
+@keyframes bounce-nds{
+    from {opacity: 0;}
+    to {opacity: 1; transform: scale(1);}
+}
+
+@keyframes bounce-out-nds{
+    from {opacity: 1; transform: scale(1);}
+    to {opacity: 0; transform: scale(0);}
+}
+
+#container-floating:hover .nds{
+  
+  animation: bounce-nds 0.1s linear;
+  animation-fill-mode:  forwards;
+}
+
+#container-floating:hover .nd2{
+  animation-delay: 0.08s;
+}
+#container-floating:hover .nd3{
+  animation-delay: 0.15s;
+}
+#container-floating:hover .nd5{
+  animation-delay: 0.2s;
+}
+
+</style>
+
+</body>
+{% endblock %}

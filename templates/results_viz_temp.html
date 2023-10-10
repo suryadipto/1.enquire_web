@@ -1,0 +1,1203 @@
+<script src="static/script/javascript.js"></script>
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet"/>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!--meta id="my-data" data-name="{{name}}" data-other="{{other}}"-->
+
+<!--script src="https://code.highcharts.com/highcharts.js"></script-->
+<script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<script src="https://code.highcharts.com/stock/highstock.js"></script>
+<script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/stock/modules/accessibility.js"></script>
+
+<script type="text/javascript" src="http://code.highcharts.com/stock/highstock.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/networkgraph.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+
+<style>
+  #container {
+    height: 1600px;
+    width: 500px;
+}
+
+
+.help-number-input {
+  position: relative;
+  /* Adjust these values accordingly */
+  top: 0px;
+  right: 0px;
+}
+
+.help-button {
+  background-color: #FF4500;
+  color: white;
+  border: none;
+  padding: 1px;
+  font-size: 12px;
+  /* font-weight: bold; */
+  height: 20px;
+  width: 20px;
+  box-shadow: 0 2px 4px #9C3F1E;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.help-button {
+  border-radius: 70%;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+</style>
+
+
+<body style="background-color:white">
+
+  <div class="help-number-input">
+    <!--button type="button" class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</button-->
+    <button type="button" class="help-button" 
+        data-toggle="popover" title="Popover title" 
+        data-content="And here's some amazing content. It's very engaging. Right?">
+        &#63;
+    </button>
+  </div>
+
+                <!----------------->
+                <form action="/results_node_characteristics" method="POST" style="align-items:center;" enctype="multipart/form-data">
+                                <div class="wrap-collabsible">
+                                                <input id="collapsible" class="toggle" type="checkbox" hidden> 
+                                                <label for="collapsible" class="lbl-toggle">Node characteristics</label>
+                                                <div class="collapsible-content">
+                                                                <div class="float-container">
+                                                                            <div style="text-align:center;">
+                                                                              <h4>Representativeness</h4>
+                                                                              <h8>Top 20 terms</h8>
+                                                                              <div class="help-number-input">
+                                                                                <div class="help-button" data-toggle="popover" data-placement="top" data-content="beta modifies the decrease of the values for integrating non-seeds into the trees. Setting beta = 0 will only give a value to a non-seed until its first appearance in one tree.">&#63;</div>
+                                                                              </div>
+                                                                            </div>
+                                                                            <br/>
+                                                                            <div class="float-child1">
+                                                                                    <div class="container-representativeness-parent"><div id='container-representativeness' class="container-representativeness"></div></div>
+                                                                            </div>
+                                                                </div>
+                                                                <input id='myButton' type="submit" class="run-robust-button" formtarget="_blank" value="Explore more">
+                                                </div>
+                                </div>
+                </form>
+                <!----------------->
+
+<form action="/results_edge_characteristics" method="POST" style="align-items:center;" enctype="multipart/form-data">
+  
+  <div class="wrap-collabsible">
+    <input id="collapsible_edge" class="toggle" type="checkbox" hidden> 
+    <label for="collapsible_edge" class="lbl-toggle">Edge characteristics</label>
+    <div class="collapsible-content">
+      <!--div class="content-inner"-->    
+
+  <div class="float-container">
+    <div class="float-child1" style="height: 1000px;">
+      <div class="containerzzz"><div id='containerzzz' class="containerzzz"></div></div>
+    </div>
+
+    
+    <!--div class="float-child2">
+      <div class="blue">Float Column 2</div>
+    </div-->
+  </div>
+  <div id="myDIV">
+    <!--ul id="myList"></ul-->
+  </div>
+  <!--ol id="list"></ol-->
+  <ul id="list"></ul>
+  <!--ul id="list2"></ul-->
+  
+
+
+
+<p>Read list:</p>
+<ul id="read-list"></ul>
+
+  <!--br/><br/><br/><br/-->
+  <div class="run-robust-div">
+    <input id='myButton' type="submit" class="run-robust-button" formtarget="_blank" value="Explore more">
+  </div>
+
+
+<!--/div-->
+</div>
+</div>
+
+</form>
+
+<style>
+
+.float-container {
+    border: 3px solid #fff;
+    padding: 20px;
+}
+
+.float-child1 {
+    width: 100%;
+    float: left;
+    padding: 20px;
+    border: 2px solid red;
+}
+
+.float-child2 {
+    width: 0%;
+    float: left;
+    padding: 20px;
+    border: 2px solid red;
+}
+
+.container-representativeness-parent {
+    /* margin-left: 100px; */
+}
+
+</style>
+
+  
+</body>
+
+<script>
+  var array1=[]
+  // var dirDist50 = '#E8544E', //genes
+    // dirDist10 = '#FFD265'; //mesh_terms
+    // dirDistLess10 = '#2AA775';
+
+    // node_data_json={#{ node_data_json | safe }#}
+    edge_list={{edge_list | safe}}
+    node_list={{node_list | safe}}
+    list_of_nodes={{list_of_nodes | safe}}
+
+
+  // <Chart> characteristics:
+  _chart_type_='networkgraph';
+  _marginTop_=100;
+  _margin_=100;
+
+  // <Title> characteristics:
+  _title_text_='Literature miner output network'
+
+Highcharts.chart('containerzzz', {
+    
+  //-----------------------
+  chart: {
+        // // Zoom options (don't work for network graphs):
+        // zoomBySingleTouch: true,
+        // zoomType: 'xy', // zoomType: 'x' // zoomType: 'y' // zoomType: 'xy'
+        // panning: true,
+        // panKey: 'shift',
+        // // -------------
+        height: 900,
+        type: _chart_type_,
+        marginTop: _marginTop_,
+        margin: _margin_,
+        animation: false,
+        events: {
+            load: function() {
+
+                    const chart = this,
+                    links = chart.series[0].points;
+                    links.forEach(link => {
+                            const graphic = link.graphic,
+                              originalStroke = graphic.attr('stroke');
+                            
+                            graphic.on('click', () => {
+
+                              function onlyUnique(value, index, array) {
+                                    return array.indexOf(value) === index;
+                                  }
+                                  // // alert(link.lit_data_df_link)
+                                  
+                                  // // ------------------
+                                  
+                              
+                                  // // document.getElementById("myDIV").innerHTML=link.lit_data_df_link;
+
+                                  // let data_initial = link.lit_data_df_link;
+                                  // var array2=array1.concat(data_initial);
+                                  // // let data = [...new Set(array2)];
+                                  // var data = array2.filter(onlyUnique);
+                                  // let list = document.getElementById("myList");
+     
+                                  // data.forEach((item) => {
+                                    // let li = document.createElement("li");
+                                    // li.innerText = item;
+                                    // list.appendChild(li);
+                                  // });
+                                  
+                                  // // ------------------
+  
+
+                                  // var x = document.getElementById("myDIV");
+                                  // if (x.style.display === "none") {
+                                  //   x.style.display = "block";
+                                  // } else {
+                                  //   x.style.display = "none";
+                                  // }
+
+                                  // // ------------------
+
+                                  var edgeInfo = link.lit_data_df_link;
+                                  var listOfEdgeInfos = [];
+                                  var list = document.getElementById("list");
+
+                                  // var array2=array1.concat(data_initial);
+                                  // let data = [...new Set(array2)];
+
+
+                                  edgeInfo.forEach(function(element) {
+                                    listOfEdgeInfos.push(`<li id='${element}'>` + element + "<button type='button' class='btn'>Delete</button></li>");
+                                    array1.push(element)
+                                  });
+
+                                  let data = [...new Set(array1)];
+
+                                  list.innerHTML = listOfEdgeInfos.join('');
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                  var ul = document.querySelector("ul");
+                                    // var list = document.querySelectorAll('ul>li');
+                                    
+                                    
+                                    
+                                    function inputLength() {
+                                        return input.value.length;
+                                    }
+                                    
+                                    function createListElement() {
+                                      /*Your delete button code MOVED HERE*/
+                                      var deleteButton = document.createElement("button");
+                                      deleteButton.setAttribute("class", "btn");
+                                      deleteButton.appendChild(document.createTextNode("Delete"));
+                                      /*end*/
+                                        var li = document.createElement("li");
+                                        li.appendChild(document.createTextNode(input.value));
+                                        ul.appendChild(li).addEventListener("click", toggleList); //append and toggle on and off new list items
+                                        input.value = "";
+                                      ul>li.appendChild(deleteButton).addEventListener("click", removeItem); //append "delete button" to newly added "li"
+                                    }
+                                    
+                                    
+                                    function addListAfterClick() {
+                                        if (inputLength() > 0) {
+                                            createListElement();
+                                        }
+                                    }
+                                    
+                                    function addListAfterKeypress(event) {
+                                        if (inputLength() > 0 && event.keyCode === 13) {
+                                            createListElement();
+                                        }
+                                    }
+                                    
+                                    
+                                    
+                                    // button.addEventListener("click", addListAfterClick);
+                                    
+                                    // input.addEventListener("keypress", addListAfterKeypress);
+                                    
+                                    
+                                    // //Toggle list item on and off when clicked on 
+                                    // var list = document.querySelectorAll('ul>li');
+                                    // for (var i = 0; i < list.length; i++) {
+                                    // list[i].addEventListener("click", toggleList);
+                                    // }
+                                    // function toggleList() {
+                                      // event.target.classList.toggle("done"); //or this.classList.toggle("done");
+                                    // }
+                                    
+                                                          
+                                    //Delete list item by clicking on the delete button next to it
+                                    var elements = document.getElementsByClassName("btn");
+                                    for (var i = 0; i < elements.length; i++){
+                                      elements[i].addEventListener("click", removeItem);
+                                    }
+                                      
+                                    function removeItem(){
+                                    var remItem=this.parentNode;
+                                    console.log(remItem.id)
+                                    this.parentNode.remove();
+
+                                    const index = data.indexOf(remItem.id);
+                                    if (index > -1) { // only splice array when item is found
+                                              data.splice(index, 1); // 2nd parameter means remove one item only
+                                            }
+                                    }
+
+                                    // const myArray = [1, 2, 3, 4, 5];
+
+// const index = myArray.indexOf(2);
+
+// const x = myArray.splice(index, 1);
+
+// console.log(`myArray values: ${myArray}`);
+// console.log(`variable x value: ${x}`);
+
+
+
+
+                                  // var edgeInfo = link.lit_data_df_link;
+                                  // var listOfEdgeInfos = [];
+                                  // var list = document.getElementById("list");
+
+                                  // // var array2=array1.concat(data_initial);
+                                  // // let data = [...new Set(array2)];
+
+
+                                  // edgeInfo.forEach(function(element) {
+                                  //   listOfEdgeInfos.push(`<li id='${element}'>` + element + "<button type='button' class='btn'>Delete</button></li>");
+                                  //   array1.push(element)
+                                  // });
+
+                                  // let data = [...new Set(array1)];
+
+                                  to_read_list=[]
+                                  var read_list = document.getElementById("read-list");
+
+                                  data.forEach(function(element1) {
+                                    to_read_list.push(`<li id='${element1}'>` + element1 + "<button type='button' class='btn'>Delete</button></li>");
+                                  });
+      
+                                  read_list.innerHTML = to_read_list.join('');
+
+                                  // -----------------------------
+
+                                  // let array2=array1.concat(edgeInfo);
+                                  // let data = [...new Set(array2)];
+
+                                  // var listOfEdgeDatas = [];
+                                  // var list_data_ = document.getElementById("list");
+
+                                  // -----------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+            // var a = document.getElementById("list2");
+
+            // edgeInfo.forEach(function(element) {
+
+            //   var li = document.createElement("li");
+            //   li.setAttribute('id', element);
+            //   li.appendChild(document.createTextNode(element));
+            //   a.appendChild(li);
+
+
+
+                                    // listOfEdgeInfos.push("<li>" + element + "</li>");
+                                  // });
+
+
+
+            // var candidate = document.getElementById("candidate");
+            // var li = document.createElement("li");
+            // li.setAttribute('id', candidate.value);
+            // li.appendChild(document.createTextNode(candidate.value));
+            // a.appendChild(li);
+
+
+
+
+
+                            });
+                            
+                            graphic.on('mouseover', () => {
+                              graphic.attr({
+                                stroke: 'rgb(0, 255, 0, 0.5)'
+                              });
+                            });
+                            
+                            graphic.on('mouseout', () => {
+                              graphic.attr({
+                                stroke: originalStroke
+                              });
+                            });
+                          });
+
+                    // -----------------------------------------------------------
+
+                    this.series[0].points.forEach(p => {
+                              
+                              p.graphic.hide();
+                              
+                              p.toNode.graphic.css({
+                                opacity: 0
+                              });
+                              
+                              p.toNode.isHidden = true;
+                              
+                              p.toNode.dataLabel.css({
+                                opacity: 0
+                              })
+
+                    })
+            }
+    }
+    },
+  //-----------------------
+
+    title: {
+        text: _title_text_
+    },
+  //-----------------------
+
+    tooltip: {
+        formatter: function () {
+            var info = '';
+            switch (this.color) {
+            case dirDist50:
+                console.log(dirDist50);
+                info = 'is a node with <b>more than $n$</b> mesh terms/ papers in literature/ ...';
+                break;
+            case dirDist10:
+                console.log(dirDist10);
+                info = 'is a node with <b>more than $n$</b> associated genes/ papers in literature/ ...';
+                break;
+            case dirDistLess10:
+                console.log(dirDistLess10);
+                info = 'is an aiport <b>less than 10</b> direct distinations';
+                break;
+            }
+            return '<b>' + this.key + '</b>: ' + info;
+        }
+    },
+
+    plotOptions: {
+        networkgraph: {
+            keys: ['from', 'to', 'color', 'lit_data_df_link', 'lit_data_df_QuerySet'],
+            inactiveOtherPoints: false,
+            layoutAlgorithm: {
+                enableSimulation: false,
+                integration: 'verlet',
+                linkLength: 150
+            }
+        }
+    },
+
+    series: [
+        {
+            marker: {
+                radius: 13
+            },
+
+            point: {
+      events: {
+        click: function() {
+          var point = this;
+          point.linksFrom.forEach(link => {
+            if (link.toNode.isHidden) {
+            	link.graphic.show();
+              link.toNode.graphic.css({
+                opacity: 1
+              });
+              link.toNode.dataLabel.css({
+                opacity: 1
+              })
+              link.toNode.isHidden = false;
+            } 
+            // else {
+            //   link.graphic.hide();
+            //   link.toNode.graphic.css({
+            //     opacity: 0
+            //   });
+            //   link.toNode.dataLabel.css({
+            //     opacity: 0
+            //   })
+              link.toNode.isHidden = true;
+            // }
+          })
+          
+          // -----------------------------
+
+          // alert('Category: ' + this.color);
+
+          // -----------------------------
+
+
+
+        }
+      }
+    },
+            
+            dataLabels: {
+                enabled: true,
+                linkFormat: '',
+                allowOverlap: true,
+                style: {
+                    textOutline: false
+                }
+            },
+            // data: data_,
+            data: edge_list,
+            nodes: node_list
+        }
+    ]
+});
+
+</script>
+
+<script>
+  var blah=[['blah', 1], ['goo', 2]]
+  var barchartList_Representativeness={{barchartList_Representativeness | safe}}; 
+  var colors_Representativeness={{colors_Representativeness | safe}};
+
+  var barchartList_Representativeness_data={{barchartList_Representativeness_data | safe}}; 
+  var barchartList_Representativeness_categories={{barchartList_Representativeness_categories | safe}};
+
+  console.log(barchartList_Representativeness);
+  console.log(colors_Representativeness);
+
+  const chart = Highcharts.chart('container-representativeness', {
+    chart: {
+        type: 'bar',
+        zoomBySingleTouch: true,
+        zoomType: 'x', // zoomType: 'y' // zoomType: 'xy'
+        panning: true,
+        panKey: 'shift'
+        // marginLeft: 150
+    },
+
+    plotOptions: {
+                bar: {
+                    dataLabels: {
+                      enabled: true
+                  },
+                    colorByPoint: true,
+                }
+            },
+    
+    colors: colors_Representativeness,
+    
+    title: {
+        // text: 'Most popular ideas by April 2016'
+        text: null
+    },
+    exporting: {
+    enabled: true
+  },
+    subtitle: {
+        //text: 'Source: <a href="https://highcharts.uservoice.com/forums/55896-highcharts-javascript-api">UserVoice</a>'
+        // text: 'Top 20 terms'
+        text: null
+    },
+    xAxis: {
+        categories: barchartList_Representativeness_categories,
+        // type: 'category',
+        title: {
+            text: null
+        },
+        min: 0,
+        max: 4,
+        scrollbar: {
+            enabled: true
+        },
+        tickLength: 0
+    },
+    yAxis: {
+                min: 0,
+                title: {
+                    // text: 'Representativeness (range: [0, 1])'
+                    text: 'Representativeness ∈ [0, 1]'
+                }
+            },
+    // plotOptions: {
+    //     bar: {
+    //         dataLabels: {
+    //             enabled: true
+    //         }
+    //     }
+    // },
+    legend: {
+        enabled: false
+    },
+    credits: {
+        enabled: false
+    }, 
+    series: [{
+        // colors: ["#ff0000", '#00ff00', '0000ff'],
+        name: 'Wscore',
+        data: barchartList_Representativeness_data
+    }]
+  });
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+  Highcharts.addEvent(
+    Highcharts.Series,
+    'afterSetOptions',
+    function (e) {
+        var colors = Highcharts.getOptions().colors,
+            i = 0,
+            nodes = {};
+
+        if (
+            this instanceof Highcharts.Series.types.networkgraph &&
+            e.options.id === 'lang-tree'
+        ) {
+            e.options.data.forEach(function (link) {
+
+                if (link[0] === 'Proto Indo-European') {
+                    nodes['Proto Indo-European'] = {
+                        id: 'Proto Indo-European',
+                        marker: {
+                            radius: 20
+                        }
+                    };
+                    nodes[link[1]] = {
+                        id: link[1],
+                        marker: {
+                            radius: 10
+                        },
+                        color: colors[i++]
+                    };
+                } else if (nodes[link[0]] && nodes[link[0]].color) {
+                    nodes[link[1]] = {
+                        id: link[1],
+                        color: nodes[link[0]].color
+                    };
+                }
+            });
+
+            e.options.nodes = Object.keys(nodes).map(function (id) {
+                return nodes[id];
+            });
+        }
+    }
+);
+
+Highcharts.chart('container-complex', {
+    chart: {
+        type: 'networkgraph',
+        height: '100%'
+    },
+    title: {
+        text: 'The Indo-European Language Tree',
+        align: 'left'
+    },
+    subtitle: {
+        text: 'A Force-Directed Network Graph in Highcharts',
+        align: 'left'
+    },
+    plotOptions: {
+        networkgraph: {
+            keys: ['from', 'to'],
+            layoutAlgorithm: {
+                enableSimulation: true,
+                friction: -0.9
+            }
+        }
+    },
+    series: [{
+        accessibility: {
+            enabled: false
+        },
+        dataLabels: {
+            enabled: true,
+            linkFormat: '',
+            style: {
+                fontSize: '0.8em',
+                fontWeight: 'normal'
+            }
+        },
+        id: 'lang-tree',
+        data: [
+            ['Proto Indo-European', 'Balto-Slavic'],
+            ['Proto Indo-European', 'Germanic'],
+            ['Proto Indo-European', 'Celtic'],
+            ['Proto Indo-European', 'Italic'],
+            ['Proto Indo-European', 'Hellenic'],
+            ['Proto Indo-European', 'Anatolian'],
+            ['Proto Indo-European', 'Indo-Iranian'],
+            ['Proto Indo-European', 'Tocharian'],
+            ['Indo-Iranian', 'Dardic'],
+            ['Indo-Iranian', 'Indic'],
+            ['Indo-Iranian', 'Iranian'],
+            ['Iranian', 'Old Persian'],
+            ['Old Persian', 'Middle Persian'],
+            ['Indic', 'Sanskrit'],
+            ['Italic', 'Osco-Umbrian'],
+            ['Italic', 'Latino-Faliscan'],
+            ['Latino-Faliscan', 'Latin'],
+            ['Celtic', 'Brythonic'],
+            ['Celtic', 'Goidelic'],
+            ['Germanic', 'North Germanic'],
+            ['Germanic', 'West Germanic'],
+            ['Germanic', 'East Germanic'],
+            ['North Germanic', 'Old Norse'],
+            ['North Germanic', 'Old Swedish'],
+            ['North Germanic', 'Old Danish'],
+            ['West Germanic', 'Old English'],
+            ['West Germanic', 'Old Frisian'],
+            ['West Germanic', 'Old Dutch'],
+            ['West Germanic', 'Old Low German'],
+            ['West Germanic', 'Old High German'],
+            ['Old Norse', 'Old Icelandic'],
+            ['Old Norse', 'Old Norwegian'],
+            ['Old Norwegian', 'Middle Norwegian'],
+            ['Old Swedish', 'Middle Swedish'],
+            ['Old Danish', 'Middle Danish'],
+            ['Old English', 'Middle English'],
+            ['Old Dutch', 'Middle Dutch'],
+            ['Old Low German', 'Middle Low German'],
+            ['Old High German', 'Middle High German'],
+            ['Balto-Slavic', 'Baltic'],
+            ['Balto-Slavic', 'Slavic'],
+            ['Slavic', 'East Slavic'],
+            ['Slavic', 'West Slavic'],
+            ['Slavic', 'South Slavic'],
+            // Leaves:
+            ['Proto Indo-European', 'Phrygian'],
+            ['Proto Indo-European', 'Armenian'],
+            ['Proto Indo-European', 'Albanian'],
+            ['Proto Indo-European', 'Thracian'],
+            ['Tocharian', 'Tocharian A'],
+            ['Tocharian', 'Tocharian B'],
+            ['Anatolian', 'Hittite'],
+            ['Anatolian', 'Palaic'],
+            ['Anatolian', 'Luwic'],
+            ['Anatolian', 'Lydian'],
+            ['Iranian', 'Balochi'],
+            ['Iranian', 'Kurdish'],
+            ['Iranian', 'Pashto'],
+            ['Iranian', 'Sogdian'],
+            ['Old Persian', 'Pahlavi'],
+            ['Middle Persian', 'Persian'],
+            ['Hellenic', 'Greek'],
+            ['Dardic', 'Dard'],
+            ['Sanskrit', 'Sindhi'],
+            ['Sanskrit', 'Romani'],
+            ['Sanskrit', 'Urdu'],
+            ['Sanskrit', 'Hindi'],
+            ['Sanskrit', 'Bihari'],
+            ['Sanskrit', 'Assamese'],
+            ['Sanskrit', 'Bengali'],
+            ['Sanskrit', 'Marathi'],
+            ['Sanskrit', 'Gujarati'],
+            ['Sanskrit', 'Punjabi'],
+            ['Sanskrit', 'Sinhalese'],
+            ['Osco-Umbrian', 'Umbrian'],
+            ['Osco-Umbrian', 'Oscan'],
+            ['Latino-Faliscan', 'Faliscan'],
+            ['Latin', 'Portugese'],
+            ['Latin', 'Spanish'],
+            ['Latin', 'French'],
+            ['Latin', 'Romanian'],
+            ['Latin', 'Italian'],
+            ['Latin', 'Catalan'],
+            ['Latin', 'Franco-Provençal'],
+            ['Latin', 'Rhaeto-Romance'],
+            ['Brythonic', 'Welsh'],
+            ['Brythonic', 'Breton'],
+            ['Brythonic', 'Cornish'],
+            ['Brythonic', 'Cuymbric'],
+            ['Goidelic', 'Modern Irish'],
+            ['Goidelic', 'Scottish Gaelic'],
+            ['Goidelic', 'Manx'],
+            ['East Germanic', 'Gothic'],
+            ['Middle Low German', 'Low German'],
+            ['Middle High German', '(High) German'],
+            ['Middle High German', 'Yiddish'],
+            ['Middle English', 'English'],
+            ['Middle Dutch', 'Hollandic'],
+            ['Middle Dutch', 'Flemish'],
+            ['Middle Dutch', 'Dutch'],
+            ['Middle Dutch', 'Limburgish'],
+            ['Middle Dutch', 'Brabantian'],
+            ['Middle Dutch', 'Rhinelandic'],
+            ['Old Frisian', 'Frisian'],
+            ['Middle Danish', 'Danish'],
+            ['Middle Swedish', 'Swedish'],
+            ['Middle Norwegian', 'Norwegian'],
+            ['Old Norse', 'Faroese'],
+            ['Old Icelandic', 'Icelandic'],
+            ['Baltic', 'Old Prussian'],
+            ['Baltic', 'Lithuanian'],
+            ['Baltic', 'Latvian'],
+            ['West Slavic', 'Polish'],
+            ['West Slavic', 'Slovak'],
+            ['West Slavic', 'Czech'],
+            ['West Slavic', 'Wendish'],
+            ['East Slavic', 'Bulgarian'],
+            ['East Slavic', 'Old Church Slavonic'],
+            ['East Slavic', 'Macedonian'],
+            ['East Slavic', 'Serbo-Croatian'],
+            ['East Slavic', 'Slovene'],
+            ['South Slavic', 'Russian'],
+            ['South Slavic', 'Ukrainian'],
+            ['South Slavic', 'Belarusian'],
+            ['South Slavic', 'Rusyn']
+        ]
+    }]
+});
+
+</script>
+
+<style>
+  .highcharts-figure,
+.highcharts-data-table table {
+    min-width: 320px;
+    max-width: 800px;
+    margin: 1em auto;
+}
+
+.highcharts-data-table table {
+    font-family: Verdana, sans-serif;
+    border-collapse: collapse;
+    border: 1px solid #ebebeb;
+    margin: 10px auto;
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+}
+
+.highcharts-data-table caption {
+    padding: 1em 0;
+    font-size: 1.2em;
+    color: #555;
+}
+
+.highcharts-data-table th {
+    font-weight: 600;
+    padding: 0.5em;
+}
+
+.highcharts-data-table td,
+.highcharts-data-table th,
+.highcharts-data-table caption {
+    padding: 0.5em;
+}
+
+.highcharts-data-table thead tr,
+.highcharts-data-table tr:nth-child(even) {
+    background: #f8f8f8;
+}
+
+.highcharts-data-table tr:hover {
+    background: #f1f7ff;
+}
+</style>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+
+// var container = document.createElement('div');
+// document.body.appendChild(container);
+
+var charts = {}; // global variable
+
+var renderTo = 'container-1';
+charts[renderTo] = new Highcharts.Chart({
+    chart: {
+          renderTo: renderTo,
+          height: 400
+    },
+    xAxis: {
+        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+    },
+
+    series: [{
+        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+    }]
+});
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var dirDist50 = "#E8544E",
+  dirDist10 = "#FFD265",
+  dirDistLess10 = "#2AA775";
+
+Highcharts.chart("container", {
+  chart: {
+    type: "networkgraph",
+    marginTop: 80
+  },
+
+  title: {
+    text: "South Korea domestic flight routes"
+  },
+
+  tooltip: {
+    formatter: function () {
+      var info = "";
+      switch (this.color) {
+        case dirDist50:
+          console.log(dirDist50);
+          info = "is an aiport <b>more than 50</b> direct distinations";
+          break;
+        case dirDist10:
+          console.log(dirDist10);
+          info = "is an aiport <b>more than 10</b> direct distinations";
+          break;
+        case dirDistLess10:
+          console.log(dirDistLess10);
+          info = "is an aiport <b>less than 10</b> direct distinations";
+          break;
+      }
+      return "<b>" + this.key + "</b>: " + info;
+    }
+  },
+
+  plotOptions: {
+    networkgraph: {
+      keys: ["from", "to"],
+      layoutAlgorithm: {
+        enableSimulation: true,
+        integration: "verlet",
+        linkLength: 100
+      }
+    }
+  },
+
+  series: [
+    {
+      marker: {
+        radius: 13
+      },
+      dataLabels: {
+        enabled: true,
+        linkFormat: "",
+        allowOverlap: true,
+        style: {
+          textOutline: false
+        }
+      },
+      data: [
+        ["Seoul ICN", "Daegu"],
+        ["Seoul ICN", "Busan"],
+        ["Busan", "Seoul GMP"],
+        ["Busan", "Yangyang"],
+
+        ["Daegu", "Seoul GMP"],
+        ["Daegu", "Jeju"],
+
+        ["Seoul GMP", "Gwangju"],
+        ["Seoul GMP", "Yeosu"],
+        ["Seoul GMP", "Sacheon"],
+        ["Seoul GMP", "Ulsan"],
+        ["Seoul GMP", "Pohang"],
+
+        ["Jeju", "Gwangju"],
+        ["Jeju", "Gunsan"],
+        ["Jeju", "Wonju"],
+        ["Jeju", "Yangyang"],
+        ["Jeju", "Daegu"],
+        ["Jeju", "Yeosu"],
+        ["Jeju", "Sacheon"],
+        ["Jeju", "Ulsan"],
+        ["Jeju", "Busan"],
+        ["Jeju", "Cheongju"]
+      ],
+      nodes: [
+        {
+          id: "Seoul ICN",
+          marker: {
+            radius: 30
+          },
+          color: dirDist50
+        },
+        {
+          id: "Daegu",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Busan",
+          marker: {
+            radius: 30
+          },
+          color: dirDist50
+        },
+        {
+          id: "Seoul GMP",
+          marker: {
+            radius: 20
+          },
+          color: dirDist10
+        },
+        {
+          id: "Jeju",
+          marker: {
+            radius: 30
+          },
+          color: dirDist50
+        },
+        {
+          id: "Gwangju",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Yeosu",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Sacheon",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Ulsan",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Pohang",
+          marker: {
+            radius: 20
+          },
+          color: dirDist10
+        },
+        {
+          id: "Gunsan",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Wonju",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Yangyang",
+          marker: {
+            radius: 10
+          },
+          color: dirDistLess10
+        },
+        {
+          id: "Cheongju",
+          marker: {
+            radius: 20
+          },
+          color: dirDist10
+        }
+      ]
+    }
+  ]
+});
+
+</script>
+
+
+<script>
+  $("[data-toggle=popover]").popover();
+  $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+</script>
+
+
+
+{% endblock %}
